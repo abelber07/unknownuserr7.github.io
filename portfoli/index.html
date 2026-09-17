@@ -5,18 +5,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Abel Bernal | Portfoli</title>
-  <meta name="description" content="Portfoli professional d'Abel Bernal, estudiant SMX amb interès en DAM">
-  
+  <meta name="description" content="Portfoli professional d'Abel Bernal, Tècnic SMX i estudiant de DAW, amb l'objectiu de completar també el DAM">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
+      /* Paleta original (sense canvis) */
       --black: #0a0a0a;
       --dark-gray: #1a1a1a;
       --medium-gray: #2a2a2a;
@@ -24,853 +22,777 @@
       --white: #ffffff;
       --accent: #00d9ff;
       --accent-dark: #0099cc;
-      --border: 1px solid #333;
-      --border-radius: 8px;
-      --spacing-xs: 0.5rem;
-      --spacing-sm: 1rem;
-      --spacing-md: 2rem;
-      --spacing-lg: 4rem;
-      --spacing-xl: 6rem;
+
+      /* Escala de text derivada de la mateixa paleta */
+      --text-1: var(--white);
+      --text-2: #a6a6a6;
+      --text-3: #6e6e6e;
+      --accent-glow: rgba(0, 217, 255, .18);
+
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --radius-sm: 6px;
+      --radius-md: 14px;
+      --radius-lg: 26px;
+      --radius-pill: 999px;
+
+      --space-3xs: .375rem;
+      --space-2xs: .625rem;
+      --space-xs: 1rem;
+      --space-sm: 1.5rem;
+      --space-md: 2.25rem;
+      --space-lg: 3.5rem;
+      --space-xl: 5.5rem;
+      --space-2xl: 8rem;
+
+      --max-width: 1180px;
+      --ease: cubic-bezier(.16,1,.3,1);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
+
     body {
-      font-family: 'Inter', sans-serif;
-      color: var(--white);
+      font-family: var(--font-body);
+      color: var(--text-1);
       background: var(--black);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    
+
     h1, h2, h3, h4, h5 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
-    
+
+    a { color: inherit; }
+
+    ::selection { background: var(--accent); color: var(--black); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    img { max-width: 100%; display: block; }
+
     .container {
-      max-width: 1200px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.75rem;
     }
-    
-    .section {
-      padding: var(--spacing-xl) 0;
+
+    .section { padding: var(--space-2xl) 0; }
+
+    .section-header {
+      margin-bottom: var(--space-lg);
+      max-width: 620px;
     }
-    
-    .section-title {
-      margin-bottom: var(--spacing-lg);
-      text-align: center;
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: var(--space-3xs);
     }
-    
-    .section-title h2 {
-      font-size: 2.5rem;
-      margin-bottom: var(--spacing-sm);
+
+    .section-header p {
+      color: var(--text-2);
+      font-size: 1.05rem;
+    }
+
+    .clean-list { list-style: none; }
+    .clean-list li {
       position: relative;
-      display: inline-block;
+      padding-left: 1.15rem;
+      margin-bottom: .55rem;
+      color: var(--text-2);
     }
-    
-    .section-title h2::after {
+    .clean-list li::before {
       content: '';
       position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
+      left: 0;
+      top: .68rem;
+      width: 7px;
+      height: 1.5px;
       background: var(--accent);
     }
-    
-    .section-title p {
-      color: #999;
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
+    .clean-list li strong { color: var(--text-1); font-weight: 600; }
+    .clean-list ul { margin: .5rem 0 .75rem 0; }
+
+    /* ===== Icones SVG (sprite) ===== */
+    .svg-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
     }
-    
-    /* Header */
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      vertical-align: -0.14em;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    /* ===== Header ===== */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(10px);
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 1rem 0;
-      border-bottom: var(--border);
+      padding: 1.15rem 0;
+      background: rgba(10, 10, 10, .72);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
+
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+
     .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--white);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: .55rem;
     }
-    
+
     .logo-dot {
-      width: 8px;
-      height: 8px;
+      width: 6px; height: 6px;
       background: var(--accent);
       border-radius: 50%;
-      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 3px var(--accent-glow);
+      animation: pulse 2.4s infinite;
     }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-    
+
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.45; } }
+
+    nav ul { display: flex; list-style: none; gap: 2.1rem; }
+
     nav a {
-      color: #ccc;
+      color: var(--text-2);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: .92rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-      padding: 0.5rem 0;
+      padding: .4rem 0;
       position: relative;
+      transition: color .25s var(--ease);
     }
-    
-    nav a:hover,
-    nav a.active {
-      color: var(--white);
-    }
-    
+
+    nav a:hover, nav a.active { color: var(--white); }
+
     nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
       background: var(--accent);
-      transition: width 0.3s ease;
+      transition: width .3s var(--ease);
     }
-    
-    nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
-    }
-    
+
+    nav a:hover::after, nav a.active::after { width: 100%; }
+
     .mobile-menu-btn {
       display: none;
       background: none;
       border: none;
       color: var(--white);
-      font-size: 1.5rem;
       cursor: pointer;
+      line-height: 1;
+      padding: .25rem;
     }
-    
-    /* Hero */
+    .mobile-menu-btn .icon { font-size: 1.6rem; }
+
+    /* ===== Hero ===== */
     #hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
-      position: relative;
-      overflow: hidden;
+      padding-top: 5rem;
     }
-    
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.1));
-      clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: var(--space-lg);
+      align-items: center;
     }
-    
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-    }
-    
-    .hero-badge {
+
+    .hero-status {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background: rgba(0, 217, 255, 0.1);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: var(--spacing-lg);
-      border: 1px solid rgba(0, 217, 255, 0.2);
+      gap: .6rem;
+      font-size: .92rem;
+      color: var(--text-2);
+      margin-bottom: var(--space-sm);
     }
-    
-    .hero-badge i {
-      font-size: 1rem;
+
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+      flex-shrink: 0;
     }
-    
+
     .hero-content h1 {
-      font-size: 3.5rem;
-      margin-bottom: var(--spacing-md);
-      line-height: 1.1;
+      font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+      margin-bottom: var(--space-xs);
     }
-    
-    .hero-highlight {
-      color: var(--accent);
-      position: relative;
+
+    .hero-highlight { color: var(--accent); }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: var(--space-md);
     }
-    
-    .hero-highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: rgba(0, 217, 255, 0.2);
-      z-index: -1;
-    }
-    
+    .hero-role span { color: var(--accent); }
+
     .hero-description {
-      font-size: 1.2rem;
-      color: #ccc;
-      margin-bottom: var(--spacing-lg);
-      max-width: 600px;
+      color: var(--text-2);
+      font-size: 1.1rem;
+      max-width: 48ch;
+      margin-bottom: var(--space-lg);
     }
-    
-    .hero-contact {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    
+
+    .hero-contact { display: flex; gap: 1rem; flex-wrap: wrap; }
+
     .contact-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      background: var(--medium-gray);
-      border-radius: var(--border-radius);
-      transition: all 0.3s ease;
+      gap: .6rem;
+      padding: .8rem 1.35rem;
+      border-radius: var(--radius-pill);
       border: 1px solid var(--light-gray);
+      text-decoration: none;
+      color: var(--white);
+      font-size: .92rem;
+      transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
     }
-    
-    .contact-link:hover {
-      background: var(--light-gray);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+    .contact-link:hover { border-color: var(--accent); background: rgba(0,217,255,.06); transform: translateY(-2px); }
+    .contact-link .icon { color: var(--accent); font-size: 1.05rem; }
+
+    .hero-graphic { position: relative; }
+    .path-svg { width: 100%; height: auto; overflow: visible; }
+
+    .path-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: .55;
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: draw-path 2.4s var(--ease) forwards .3s;
     }
-    
-    .contact-link i {
-      color: var(--accent);
+
+    .link-line { stroke: var(--light-gray); stroke-width: 1; opacity: .7; }
+    .node-dim { fill: var(--light-gray); }
+    .node-past { fill: var(--accent); opacity: .5; }
+    .node-future { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .75; stroke-dasharray: 3 3; }
+    .node-current { fill: var(--accent); }
+
+    .node-pulse {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.4;
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: pulse-ring 2.6s ease-out infinite;
     }
-    
-    /* About */
-    #about {
-      background: var(--dark-gray);
+
+    @keyframes draw-path { to { stroke-dashoffset: 0; } }
+    @keyframes pulse-ring {
+      0% { r: 7; opacity: .85; }
+      100% { r: 24; opacity: 0; }
     }
-    
+
+    @media (prefers-reduced-motion: reduce) {
+      .path-line { animation: none; stroke-dashoffset: 0; }
+      .node-pulse { animation: none; opacity: 0; }
+    }
+
+    /* ===== About ===== */
+    #about { background: var(--dark-gray); }
+
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-lg);
+      grid-template-columns: .8fr 1.2fr;
+      gap: var(--space-lg);
       align-items: start;
     }
-    
-    .about-image {
-      position: relative;
-    }
-    
+
+    /* Marc premium per a la foto de perfil */
     .profile-image {
       width: 100%;
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-gray);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      max-width: 320px;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      margin: 0 auto var(--space-sm);
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--accent);
+      box-shadow:
+        0 0 0 6px var(--black),
+        0 0 30px var(--accent-glow);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+      display: block;
     }
-    
+
+    .profile-image:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow:
+        0 0 0 6px var(--black),
+        0 0 45px rgba(0, 217, 255, 0.35);
+    }
+
     .tech-stack {
-      margin-top: var(--spacing-md);
-      background: var(--black);
-      padding: var(--spacing-md);
-      border-radius: var(--border-radius);
+      margin-top: var(--space-sm);
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
       border: 1px solid var(--light-gray);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       text-align: center;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    
-    .tech-stack h4 {
-      color: var(--accent);
-      margin-bottom: var(--spacing-sm);
-      font-size: 1rem;
-    }
-    
-    .tech-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 1.5rem;
-    }
-    
-    .tech-icons i {
-      color: #666;
-      transition: color 0.3s ease;
-    }
-    
-    .tech-icons i:hover {
-      color: var(--accent);
-    }
-    
-    .about-content h3 {
-      font-size: 2rem;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .about-text {
-      color: #ccc;
-      margin-bottom: var(--spacing-lg);
-      font-size: 1.1rem;
-    }
-    
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-sm);
-    }
-    
-    .info-item {
+
+    .tech-stack h4 { color: var(--text-2); font-weight: 500; margin-bottom: var(--space-xs); font-size: .9rem; }
+
+    .tech-icons { display: flex; justify-content: center; gap: 1.5rem; }
+    .tech-icons .icon { font-size: 1.45rem; color: var(--text-3); transition: color .3s ease, transform .3s var(--ease); }
+    .tech-icons .icon:hover { color: var(--accent); transform: translateY(-2px); }
+
+    .about-content h3 { font-size: 1.9rem; margin-bottom: var(--space-sm); }
+
+    .about-text { color: var(--text-2); margin-bottom: var(--space-lg); font-size: 1.08rem; max-width: 58ch; }
+
+    .info-list { display: flex; flex-direction: column; }
+
+    .info-row {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      padding: var(--spacing-sm);
-      background: var(--medium-gray);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-gray);
+      gap: var(--space-xs);
+      padding: .9rem 0;
+      border-top: 1px solid var(--light-gray);
     }
-    
-    .info-item i {
-      color: var(--accent);
-      font-size: 1.2rem;
-    }
-    
-    /* Skills */
+    .info-row:last-child { border-bottom: 1px solid var(--light-gray); }
+    .info-row .icon { color: var(--accent); font-size: 1.05rem; }
+    .info-row span { color: var(--text-2); }
+
+    /* ===== Skills ===== */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--spacing-md);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
     }
-    
-    .skill-card {
-      background: var(--dark-gray);
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-gray);
-      transition: all 0.3s ease;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
-    }
-    
-    .skill-card h3 {
+
+    .skill-group h3 {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-      color: var(--accent);
+      gap: .65rem;
+      margin-bottom: var(--space-md);
+      font-size: 1.1rem;
+      color: var(--text-1);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--light-gray);
     }
-    
+    .skill-group h3 .icon { color: var(--accent); font-size: 1.15rem; }
+
     .skill-item {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--space-sm);
+      padding: .3rem .35rem .45rem;
+      border-radius: var(--radius-sm);
+      transition: background .3s var(--ease);
     }
-    
+    .skill-item:last-child { margin-bottom: 0; }
+    .skill-item:hover { background: rgba(255,255,255,.022); }
+
     .skill-header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      gap: 1rem;
+      margin-bottom: .6rem;
+      font-size: .92rem;
     }
-    
-    .skill-bar {
-      height: 6px;
-      background: var(--medium-gray);
-      border-radius: 3px;
+
+    .skill-name {
+      color: var(--text-1);
+      font-weight: 500;
+      letter-spacing: .005em;
+    }
+
+    .skill-value {
+      font-family: var(--font-display);
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--accent);
+      padding: .1rem .5rem;
+      line-height: 1.5;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0,217,255,.22);
+      background: rgba(0,217,255,.07);
+      transition: background .3s var(--ease), border-color .3s var(--ease);
+    }
+    .skill-item:hover .skill-value {
+      background: rgba(0,217,255,.13);
+      border-color: rgba(0,217,255,.4);
+    }
+
+    .skill-track {
+      position: relative;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,.045);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.045);
       overflow: hidden;
     }
-    
-    .skill-progress {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-      border-radius: 3px;
+
+    .skill-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(0,217,255,.22) 0%, var(--accent) 65%, #8df3ff 100%);
+      box-shadow: 0 0 12px rgba(0,217,255,.55);
+      transition: width 1.4s var(--ease);
+      -webkit-mask-image: repeating-linear-gradient(90deg,
+        #000 0, #000 calc(10% - 4px),
+        transparent calc(10% - 4px), transparent 10%);
+      mask-image: repeating-linear-gradient(90deg,
+        #000 0, #000 calc(10% - 4px),
+        transparent calc(10% - 4px), transparent 10%);
     }
-    
-    /* Education */
-    #education {
-      background: var(--dark-gray);
-    }
-    
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .timeline::before {
+
+    .skill-track.is-visible .skill-fill { width: var(--level); }
+
+    /* ===== Education / path ===== */
+    #education { background: var(--dark-gray); }
+
+    .path-list { position: relative; max-width: 760px; }
+
+    .path-list::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent);
+      left: 9px; top: 6px; bottom: 6px;
+      width: 1px;
+      background: var(--light-gray);
     }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: var(--spacing-xl);
-      padding-left: var(--spacing-lg);
-    }
-    
-    .timeline-dot {
-      position: absolute;
-      left: -9px;
-      top: 0;
-      width: 16px;
-      height: 16px;
-      background: var(--black);
-      border: 3px solid var(--accent);
+
+    .path-item { position: relative; padding-left: 3rem; padding-bottom: var(--space-lg); }
+    .path-item:last-child { padding-bottom: 0; }
+
+    .path-node { position: absolute; left: 0; top: 3px; width: 20px; height: 20px; }
+    .path-node-dot {
+      width: 10px; height: 10px;
+      margin: 5px;
       border-radius: 50%;
+      background: var(--medium-gray);
+      border: 2px solid var(--light-gray);
+      display: block;
     }
-    
-    .timeline-date {
+
+    .path-item.is-done .path-node-dot { background: var(--accent); border-color: var(--accent); }
+
+    .path-item.is-current .path-node-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
+    .path-item.is-current .path-node::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      animation: pulse-ring-sm 2.4s ease-out infinite;
+    }
+    @keyframes pulse-ring-sm {
+      0% { transform: scale(.6); opacity: .8; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .path-item.is-future .path-node-dot { background: transparent; border: 2px dashed var(--text-3); }
+
+    .path-date {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
       color: var(--accent);
-      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: 1px;
+      margin-bottom: .4rem;
     }
-    
-    .timeline-content {
-      background: var(--black);
-      padding: var(--spacing-md);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-gray);
+    .path-item.is-future .path-date { color: var(--text-3); }
+
+    .path-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      padding: .15rem .5rem;
+      border-radius: var(--radius-pill);
+      background: rgba(0,217,255,.14);
+      color: var(--accent);
     }
-    
-    .timeline-content h3 {
-      margin-bottom: 0.5rem;
-    }
-    
-    .timeline-content h4 {
-      color: #999;
-      font-weight: 500;
-      margin-bottom: var(--spacing-sm);
-    }
-    
-    /* Professional Blocks - VERTICAL */
-    #professional-blocks {
-      background: var(--black);
-    }
-    
-    .blocks-container {
+
+    .path-body h3 { font-size: 1.25rem; margin-bottom: .15rem; }
+    .path-body h4 { font-size: .98rem; color: var(--text-2); font-weight: 500; margin-bottom: .6rem; }
+    .path-body p { color: var(--text-2); font-size: .98rem; max-width: 56ch; }
+
+    /* ===== Professional Blocks ===== */
+    #professional-blocks { background: var(--black); }
+
+    .dossier-list {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-xl);
+      gap: var(--space-xl);
       max-width: 800px;
       margin: 0 auto;
     }
-    
-    .block-card {
-      background: var(--dark-gray);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      border: 1px solid var(--light-gray);
-      transition: all 0.3s ease;
+
+    .dossier-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--light-gray);
     }
-    
-    .block-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
-    }
-    
-    .block-header {
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      padding: var(--spacing-md);
-      text-align: center;
-    }
-    
-    .block-header h3 {
-      font-size: 1.5rem;
-      color: var(--black);
-    }
-    
-    .block-content {
-      padding: var(--spacing-md);
-    }
-    
-    .block-item {
-      margin-bottom: var(--spacing-md);
-      padding: var(--spacing-sm);
-      background: var(--medium-gray);
-      border-radius: var(--border-radius);
-      border-left: 3px solid var(--accent);
-    }
-    
-    .block-item h4 {
+
+    .dossier-mark {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 700;
       color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
+      opacity: .85;
+      line-height: 1;
     }
-    
-    .block-item ul {
-      list-style: none;
-      padding-left: 1rem;
+
+    .dossier-header h3 { font-size: 1.4rem; }
+
+    .dossier-lead { margin-bottom: var(--space-md); }
+    .dossier-lead .role { font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); margin-bottom: .3rem; }
+    .dossier-lead .role-sub { color: var(--text-2); }
+
+    .dossier-section { margin-bottom: var(--space-md); }
+    .dossier-section:last-child { margin-bottom: 0; }
+    .dossier-section h4 { font-size: 1rem; color: var(--text-1); margin-bottom: .6rem; }
+    .dossier-section > p { color: var(--text-2); }
+    .dossier-intro { color: var(--text-2); margin-bottom: var(--space-md); }
+
+    .offer-list { display: flex; flex-direction: column; }
+    .offer {
+      padding: var(--space-sm) 0;
+      border-top: 1px solid var(--light-gray);
     }
-    
-    .block-item li {
-      margin-bottom: 0.5rem;
-      color: #ccc;
-      position: relative;
-      padding-left: 1rem;
-    }
-    
-    .block-item li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-    
+    .offer:last-child { border-bottom: 1px solid var(--light-gray); }
+    .offer-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; margin-bottom: .6rem; }
+    .offer-head h4 { font-size: 1.02rem; color: var(--text-1); }
+    .offer-company { color: var(--text-3); font-size: .88rem; }
+    .clean-list.compact li { margin-bottom: .4rem; font-size: .94rem; }
+
     .job-offers {
-      background: var(--dark-gray);
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius);
-      border: 1px solid var(--light-gray);
-      margin-top: var(--spacing-lg);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--light-gray);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    
-    .offer-item {
-      margin-bottom: var(--spacing-md);
-      padding: var(--spacing-md);
-      background: var(--medium-gray);
-      border-radius: var(--border-radius);
-      border-left: 3px solid var(--accent);
-    }
-    
-    .offer-item h4 {
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    
+
+    .job-offers > h3 { font-size: 1.3rem; margin-bottom: var(--space-md); }
+
     .requirements-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-sm);
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: var(--space-md);
     }
-    
-    .requirement-category {
-      background: var(--dark-gray);
-      padding: var(--spacing-sm);
-      border-radius: var(--border-radius);
-    }
-    
-    .requirement-category h5 {
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    /* Contact */
-    #contact {
-      background: var(--dark-gray);
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-lg);
-    }
-    
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .contact-info h3 {
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .contact-details {
-      margin-bottom: var(--spacing-lg);
-    }
-    
+
+    .requirement-category h5 { color: var(--accent); font-size: .88rem; margin-bottom: .6rem; font-weight: 600; }
+    .requirement-category .clean-list li { font-size: .92rem; }
+
+    /* ===== Contact ===== */
+    #contact { background: var(--dark-gray); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+
+    .contact-info h3 { margin-bottom: var(--space-md); font-size: 1.3rem; }
+
+    .contact-details { margin-bottom: var(--space-lg); }
+
     .contact-detail {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-sm);
-      padding: var(--spacing-sm);
-      background: var(--medium-gray);
-      border-radius: var(--border-radius);
+      gap: var(--space-xs);
+      padding: .85rem 0;
+      border-top: 1px solid var(--light-gray);
+    }
+    .contact-detail:last-child { border-bottom: 1px solid var(--light-gray); }
+    .contact-detail .icon { color: var(--accent); font-size: 1.05rem; }
+
+    .available-box {
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
       border: 1px solid var(--light-gray);
+      border-left: 2px solid var(--accent);
     }
-    
-    .contact-detail i {
-      color: var(--accent);
-      font-size: 1.2rem;
-    }
-    
+    .available-box h4 { color: var(--text-1); margin-bottom: var(--space-2xs); font-size: 1rem; }
+    .available-box .clean-list { padding-left: 0; }
+
     .contact-form-container {
-      background: var(--black);
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--light-gray);
     }
-    
-    .form-group {
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #ccc;
-      font-weight: 500;
-    }
-    
+    .contact-form-container h3 { margin-bottom: var(--space-md); font-size: 1.3rem; }
+
+    .form-group { margin-bottom: var(--space-sm); }
+
+    .form-group label { display: block; margin-bottom: .5rem; color: var(--text-2); font-size: .9rem; font-weight: 500; }
+
     .form-control {
       width: 100%;
-      padding: 0.875rem 1rem;
-      background: var(--dark-gray);
+      padding: .85rem 1rem;
+      background: var(--black);
       border: 1px solid var(--light-gray);
-      border-radius: var(--border-radius);
+      border-radius: var(--radius-sm);
       color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
+      font-family: var(--font-body);
+      font-size: .98rem;
+      transition: border-color .25s ease;
     }
-    
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    
-    textarea.form-control {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
+    .form-control:focus { outline: none; border-color: var(--accent); }
+    textarea.form-control { min-height: 140px; resize: vertical; }
+
     .submit-btn {
       background: linear-gradient(135deg, var(--accent), var(--accent-dark));
       color: var(--black);
       border: none;
-      padding: 1rem 2.5rem;
-      border-radius: var(--border-radius);
-      font-family: 'Inter', sans-serif;
+      padding: .95rem 2.25rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
       font-weight: 600;
-      font-size: 1rem;
+      font-size: .98rem;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      transition: all 0.3s ease;
+      gap: .65rem;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
     }
-    
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
-    }
-    
-    #form-messages {
-      margin-top: var(--spacing-md);
-    }
-    
-    .message {
-      padding: var(--spacing-md);
-      border-radius: var(--border-radius);
-      display: none;
-    }
-    
-    .message.success {
-      display: block;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      color: #00ff88;
-    }
-    
-    .message.error {
-      display: block;
-      background: rgba(255, 0, 68, 0.1);
-      border: 1px solid rgba(255, 0, 68, 0.3);
-      color: #ff0044;
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--black);
-      padding: var(--spacing-xl) 0 var(--spacing-md);
-      border-top: var(--border);
-    }
-    
-    .footer-content {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .footer-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
-      color: var(--accent);
-    }
-    
-    .footer-text {
-      color: #999;
-      margin-bottom: var(--spacing-lg);
-    }
-    
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
-    }
-    
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      background: var(--dark-gray);
-      border-radius: 50%;
-      display: flex;
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,217,255,.25); }
+    .submit-btn .icon { font-size: 1.1rem; }
+
+    #form-messages { margin-top: var(--space-sm); }
+
+    .message { padding: var(--space-xs); border-radius: var(--radius-sm); display: none; font-size: .92rem; }
+    .message .icon { font-size: 1.15rem; }
+    .message.success { display: flex; gap: .6rem; align-items: center; background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.25); color: #4dffb0; }
+    .message.error { display: flex; gap: .6rem; align-items: center; background: rgba(255,0,68,.08); border: 1px solid rgba(255,0,68,.25); color: #ff5c85; }
+
+    /* ===== Footer ===== */
+    footer { padding: var(--space-xl) 0 var(--space-md); border-top: 1px solid var(--light-gray); }
+
+    .footer-content { text-align: center; max-width: 560px; margin: 0 auto; }
+
+    .footer-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: var(--space-xs); color: var(--accent); }
+
+    .footer-text { color: var(--text-2); margin-bottom: var(--space-md); }
+
+    .footer-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      color: var(--white);
-      text-decoration: none;
-      transition: all 0.3s ease;
+      gap: .6rem;
+      padding: .75rem 1.5rem;
+      border-radius: var(--radius-pill);
       border: 1px solid var(--light-gray);
+      text-decoration: none;
+      color: var(--white);
+      font-size: .92rem;
+      font-weight: 500;
+      margin-bottom: var(--space-lg);
+      transition: border-color .25s ease, background .25s ease, transform .25s ease;
     }
-    
-    .footer-social a:hover {
-      background: var(--accent);
-      color: var(--black);
-      transform: translateY(-3px);
-    }
-    
-    .copyright {
-      color: #666;
-      font-size: 0.9rem;
-      padding-top: var(--spacing-md);
-      border-top: 1px solid var(--light-gray);
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .mobile-menu-btn {
-        display: block;
-      }
-      
+    .footer-link:hover { border-color: var(--accent); background: rgba(0,217,255,.06); transform: translateY(-2px); }
+    .footer-link .icon { color: var(--accent); font-size: 1.15rem; }
+
+    .copyright { color: var(--text-3); font-size: .85rem; padding-top: var(--space-sm); border-top: 1px solid var(--light-gray); }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-graphic { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .mobile-menu-btn { display: block; }
+
       nav {
         position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
+        top: 68px; left: 0; right: 0;
         background: var(--dark-gray);
-        padding: var(--spacing-md);
-        border-bottom: var(--border);
+        padding: var(--space-sm);
+        border-bottom: 1px solid var(--light-gray);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: all .3s ease;
       }
-      
-      nav.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      nav ul {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .tech-stack {
-        position: relative;
-        bottom: 0;
-        right: 0;
-        margin-top: var(--spacing-md);
-      }
-      
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .section-title h2 {
-        font-size: 2rem;
-      }
+      nav.active { transform: translateY(0); opacity: 1; visibility: visible; }
+      nav ul { flex-direction: column; gap: 1rem; }
     }
-    
+
     @media (max-width: 480px) {
-      .container {
-        padding: 0 1rem;
-      }
-      
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      
-      .hero-contact {
-        flex-direction: column;
-      }
-      
-      .contact-link {
-        justify-content: center;
-      }
+      .container { padding: 0 1.15rem; }
+      .hero-contact { flex-direction: column; align-items: flex-start; }
+      .dossier-header { flex-direction: column; gap: .3rem; }
     }
   </style>
 </head>
 
 <body>
+  <!-- ===== Sprite d'icones SVG ===== -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.2 7.2 12 13l8.8-5.8"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-file-code" viewBox="0 0 24 24"><path d="M14.5 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5z"/><path d="M14.5 2v4.5H19"/><path d="M10.4 12.6 9 14l1.4 1.4M13.6 12.6 15 14l-1.4 1.4"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="3.2"/><path d="M4 5.5v13c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2v-13"/><path d="M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><path d="M4 17l6-5-6-5"/><path d="M12 19h8"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10.5c0 5.5-8 11.5-8 11.5s-8-6-8-11.5a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.5" r="3"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4.5" y="4.5" width="15" height="15" rx="2.5"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v2.5M15 2v2.5M9 19.5V22M15 19.5V22M2 9h2.5M2 15h2.5M19.5 9H22M19.5 15H22"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m7.5 12.5 3 3 6-6.5"/></symbol>
+    <symbol id="i-warning" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4.5M12 17.2h.01"/></symbol>
+    <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2.5h12M6 21.5h12"/><path d="M7 2.5v3.8a5 5 0 0 0 5 5 5 5 0 0 0 5-5V2.5"/><path d="M7 21.5v-3.8a5 5 0 0 1 5-5 5 5 0 0 1 5 5v3.8"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></symbol>
+  </svg>
+
   <!-- Header -->
   <header>
     <div class="container">
@@ -879,11 +801,11 @@
           <span>AB</span>
           <div class="logo-dot"></div>
         </a>
-        
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <i class="bi bi-list"></i>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Obrir menú">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
         </button>
-        
+
         <nav id="mainNav">
           <ul>
             <li><a href="#hero" class="active">Inici</a></li>
@@ -901,30 +823,64 @@
   <!-- Hero Section -->
   <section id="hero" class="section">
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="bi bi-code-slash"></i>
-          <span>Estudiant SMX | Futur Desenvolupador DAM</span>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-status">
+            <span class="status-dot"></span>
+            <span>Tècnic SMX · Estudiant DAW</span>
+          </div>
+
+          <h1>Abel <span class="hero-highlight">Bernal</span></h1>
+
+          <p class="hero-role">Camí cap a <span>desenvolupador full stack</span></p>
+
+          <p class="hero-description">
+            Estic construint el meu camí en el món de la tecnologia. Ja sóc Tècnic en Sistemes Microinformàtics
+            i Xarxes (SMX) i actualment estic cursant el Cicle Superior de Desenvolupament d'Aplicacions Web (DAW),
+            amb la intenció de continuar després amb el de Multiplataforma (DAM) per convertir-me en desenvolupador
+            full stack. Aprenent constantment i preparat per als nous reptes tecnològics.
+          </p>
+
+          <div class="hero-contact">
+            <a href="mailto:abel.bernal@insbaixcamp.cat" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+              <span>abel.bernal@insbaixcamp.cat</span>
+            </a>
+
+            <a href="tel:+34636540928" class="contact-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+              <span>+34 636 54 09 28</span>
+            </a>
+          </div>
         </div>
-        
-        <h1>Abel <span class="hero-highlight">Bernal</span></h1>
-        
-        <p class="hero-description">
-          Estic construint el meu camí en el món de la tecnologia. Actualment cursant SMX i amb l'objectiu 
-          de convertir-me en desenvolupador d'aplicacions multiplataforma. Aprenent constantment i preparat 
-          per als nous reptes tecnològics.
-        </p>
-        
-        <div class="hero-contact">
-          <a href="mailto:abel.bernal@iaballester.cat" class="contact-link">
-            <i class="bi bi-envelope"></i>
-            <span>abel.bernal@iaballester.cat</span>
-          </a>
-          
-          <a href="tel:+34636540928" class="contact-link">
-            <i class="bi bi-phone"></i>
-            <span>+34 636 54 09 28</span>
-          </a>
+
+        <div class="hero-graphic" aria-hidden="true">
+          <svg viewBox="0 0 480 560" class="path-svg" xmlns="http://www.w3.org/2000/svg">
+            <path class="path-line" d="M70,480 L150,380 L215,258 L322,178 L402,92" />
+
+            <line class="link-line" x1="70" y1="480" x2="28" y2="410" />
+            <line class="link-line" x1="150" y1="380" x2="205" y2="430" />
+            <line class="link-line" x1="215" y1="258" x2="270" y2="315" />
+            <line class="link-line" x1="322" y1="178" x2="385" y2="230" />
+            <line class="link-line" x1="402" y1="92" x2="330" y2="55" />
+
+            <circle class="node-dim" cx="28" cy="410" r="4" />
+            <circle class="node-dim" cx="205" cy="430" r="4" />
+            <circle class="node-dim" cx="270" cy="315" r="4" />
+            <circle class="node-dim" cx="385" cy="230" r="4" />
+            <circle class="node-dim" cx="330" cy="55" r="4" />
+
+            <circle class="node-past" cx="70" cy="480" r="7" />
+            <circle class="node-past" cx="150" cy="380" r="7" />
+
+            <g>
+              <circle class="node-pulse" cx="215" cy="258" r="7" />
+              <circle class="node-current" cx="215" cy="258" r="7" />
+            </g>
+
+            <circle class="node-future" cx="322" cy="178" r="7" />
+            <circle class="node-future" cx="402" cy="92" r="7" />
+          </svg>
         </div>
       </div>
     </div>
@@ -933,54 +889,51 @@
   <!-- About Section -->
   <section id="about" class="section">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Sobre mi</h2>
         <p>Estudiant de tecnologia amb visió de futur</p>
       </div>
-      
+
       <div class="about-grid">
         <div class="about-image">
-          <img src="https://i.ibb.co/39Z8z3sb/IMG-1510.jp" alt="Abel Bernal" class="profile-image">
-          
+          <img src="https://i.imgur.com/xdFBarB.png" alt="Abel Bernal" class="profile-image">
+
           <div class="tech-stack">
             <h4>Tecnologies que aprenc</h4>
             <div class="tech-icons">
-              <i class="bi bi-filetype-py" title="Python"></i>
-              <i class="bi bi-filetype-js" title="JavaScript"></i>
-              <i class="bi bi-database" title="Bases de dades"></i>
-              <i class="bi bi-terminal" title="Terminal"></i>
+              <svg class="icon" role="img" aria-label="Python"><title>Python</title><use href="#i-code"></use></svg>
+              <svg class="icon" role="img" aria-label="JavaScript"><title>JavaScript</title><use href="#i-file-code"></use></svg>
+              <svg class="icon" role="img" aria-label="Bases de dades"><title>Bases de dades</title><use href="#i-database"></use></svg>
+              <svg class="icon" role="img" aria-label="Terminal"><title>Terminal</title><use href="#i-terminal"></use></svg>
             </div>
           </div>
         </div>
-        
+
         <div class="about-content">
           <h3>Aprenent de sistemes i programació</h3>
-          
+
           <p class="about-text">
-            Actualment cursant el Cicle Formatiu de Grau Mitjà en Sistemes Microinformàtics i Xarxes. 
-            Amb una gran motivació per aprendre i créixer en el camp de la informàtica. El meu objectiu 
-            és continuar formant-me amb el Cicle Superior de Desenvolupament d'Aplicacions Multiplataforma (DAM) 
-            per convertir-me en desenvolupador professional.
+            Ja sóc Tècnic en Sistemes Microinformàtics i Xarxes (SMX), titulació que vaig obtenir amb una gran
+            motivació per aprendre i créixer en el camp de la informàtica. Actualment estic cursant el Cicle
+            Superior de Desenvolupament d'Aplicacions Web (DAW) i el meu objectiu és continuar després amb el
+            de Multiplataforma (DAM) per convertir-me en desenvolupador full stack.
           </p>
-          
-          <div class="info-grid">
-            <div class="info-item">
-              <i class="bi bi-calendar"></i>
+
+          <div class="info-list">
+            <div class="info-row">
+              <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
               <span>27/09/2007</span>
             </div>
-            
-            <div class="info-item">
-              <i class="bi bi-phone"></i>
+            <div class="info-row">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
               <span>+34 636 54 09 28</span>
             </div>
-            
-            <div class="info-item">
-              <i class="bi bi-envelope"></i>
-              <span>abel.bernal@iaballester.cat</span>
+            <div class="info-row">
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+              <span>abel.bernal@insbaixcamp.cat</span>
             </div>
-            
-            <div class="info-item">
-              <i class="bi bi-geo-alt"></i>
+            <div class="info-row">
+              <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
               <span>Reus, Catalunya</span>
             </div>
           </div>
@@ -992,255 +945,243 @@
   <!-- Skills Section -->
   <section id="skills" class="section">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Habilitats</h2>
         <p>Competències tècniques i personals en desenvolupament</p>
       </div>
-      
+
       <div class="skills-grid">
-        <div class="skill-card">
-          <h3><i class="bi bi-cpu"></i> Tècniques SMX</h3>
-          
+        <div class="skill-group">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-cpu"></use></svg> Tècniques SMX</h3>
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Muntatge i Manteniment</span>
-              <span>85%</span>
+              <span class="skill-name">Muntatge i Manteniment</span>
+              <span class="skill-value">85%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 85%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:85%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Xarxes i Sistemes</span>
-              <span>80%</span>
+              <span class="skill-name">Xarxes i Sistemes</span>
+              <span class="skill-value">80%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 80%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:80%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Servidors Web</span>
-              <span>75%</span>
+              <span class="skill-name">Servidors Web</span>
+              <span class="skill-value">75%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 75%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:75%"></span></div>
           </div>
         </div>
-        
-        <div class="skill-card">
-          <h3><i class="bi bi-code-slash"></i> Programació</h3>
-          
+
+        <div class="skill-group">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg> Programació</h3>
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Lògica de Programació</span>
-              <span>70%</span>
+              <span class="skill-name">Lògica de Programació</span>
+              <span class="skill-value">70%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 70%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:70%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>HTML/CSS Bàsic</span>
-              <span>65%</span>
+              <span class="skill-name">HTML/CSS Bàsic</span>
+              <span class="skill-value">65%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 65%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:65%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Python/JavaScript</span>
-              <span>50%</span>
+              <span class="skill-name">Python/JavaScript</span>
+              <span class="skill-value">50%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 50%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:50%"></span></div>
           </div>
         </div>
-        
-        <div class="skill-card">
-          <h3><i class="bi bi-people"></i> Personals</h3>
-          
+
+        <div class="skill-group">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg> Personals</h3>
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Treball en Equip</span>
-              <span>90%</span>
+              <span class="skill-name">Treball en Equip</span>
+              <span class="skill-value">90%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 90%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:90%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Aprenentatge Ràpid</span>
-              <span>95%</span>
+              <span class="skill-name">Aprenentatge Ràpid</span>
+              <span class="skill-value">95%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 95%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:95%"></span></div>
           </div>
-          
+
           <div class="skill-item">
             <div class="skill-header">
-              <span>Motivació</span>
-              <span>100%</span>
+              <span class="skill-name">Motivació</span>
+              <span class="skill-value">100%</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 100%"></div>
-            </div>
+            <div class="skill-track"><span class="skill-fill" style="--level:100%"></span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Education Section - ORDEN MODIFICADO: DAM primero, SMX, Certificado Google, ESO al final -->
+  <!-- Education Section -->
   <section id="education" class="section">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Formació</h2>
         <p>El meu recorregut acadèmic i plans de futur</p>
       </div>
-      
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Futur (2026-2028)</div>
-          <div class="timeline-content">
+
+      <div class="path-list">
+        <div class="path-item is-future">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">Futur · 2028-2030</span>
             <h3>Cicle Superior</h3>
             <h4>Desenvolupament d'Aplicacions Multiplataforma (DAM)</h4>
-            <p>Objectiu professional</p>
-            <p style="margin-top: 1rem; color: #999;">
-              Planifico cursar DAM per especialitzar-me en desenvolupament de software, 
-              creant aplicacions per a diferents dispositius i plataformes.
+            <p>
+              Un cop finalitzat el DAW, tinc previst continuar amb el DAM per especialitzar-me també
+              en el desenvolupament d'aplicacions per a diferents dispositius i plataformes, i completar
+              així el meu perfil com a desenvolupador full stack.
             </p>
           </div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">2024 - Actualitat</div>
-          <div class="timeline-content">
+
+        <div class="path-item is-current">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">2026 - Actualitat <span class="path-tag">En curs</span></span>
+            <h3>Cicle Superior</h3>
+            <h4>Desenvolupament d'Aplicacions Web (DAW)</h4>
+            <p>
+              Actualment cursant aquest cicle per especialitzar-me en el desenvolupament d'aplicacions
+              i llocs web, tant en la part de client com en la de servidor.
+            </p>
+          </div>
+        </div>
+
+        <div class="path-item is-done">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">2024 - 2026 <span class="path-tag">Titulació obtinguda</span></span>
             <h3>Cicle Formatiu de Grau Mitjà</h3>
-            <h4>Sistemes Microinformàtics i Xarxes</h4>
-            <p>INS Antoni Ballester, Mont Roig</p>
-            <p style="margin-top: 1rem; color: #999;">
-              Formació en muntatge i manteniment d'equips, xarxes informàtiques, sistemes operatius, 
+            <h4>Sistemes Microinformàtics i Xarxes (SMX) · INS Antoni Ballester, Mont Roig</h4>
+            <p>
+              Formació en muntatge i manteniment d'equips, xarxes informàtiques, sistemes operatius,
               seguretat informàtica i serveis de xarxa.
             </p>
           </div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">2025</div>
-          <div class="timeline-content">
+
+        <div class="path-item is-done">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">2025</span>
             <h3>Certificat Google</h3>
-            <h4>Intel·ligència Artificial i Productivitat</h4>
-            <p>Santander Open Academy</p>
-            <p style="margin-top: 1rem; color: #999;">
-              Certificat en l'aplicació de la intel·ligència artificial per a la millora de la productivitat 
+            <h4>Intel·ligència Artificial i Productivitat · Santander Open Academy</h4>
+            <p>
+              Certificat en l'aplicació de la intel·ligència artificial per a la millora de la productivitat
               i automatització de tasques.
             </p>
           </div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">2019 - 2024</div>
-          <div class="timeline-content">
+
+        <div class="path-item is-done">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">2019 - 2024</span>
             <h3>Educació Secundària Obligatòria</h3>
-            <h4>Titolació ESO</h4>
-            <p>Maria Rosa Molas, Reus</p>
-            <p style="margin-top: 1rem; color: #999;">
-              Titulació d'Educació Secundària Obligatòria completada amb èxit.
-            </p>
+            <h4>Titolació ESO · Maria Rosa Molas, Reus</h4>
+            <p>Titulació d'Educació Secundària Obligatòria completada amb èxit.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Professional Blocks - AHORA EN VERTICAL -->
+  <!-- Professional Blocks -->
   <section id="professional-blocks" class="section">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Projecte Professional</h2>
         <p>Planificació de carrera en desenvolupament de software</p>
       </div>
-      
-      <!-- Contenedor vertical para los bloques -->
-      <div class="blocks-container">
-        
-        <!-- Bloque A -->
-        <div class="block-card">
-          <div class="block-header">
-            <h3>BLOC A - Sortida Professional DAM</h3>
+
+      <div class="dossier-list">
+
+        <!-- Bloc A -->
+        <article class="dossier">
+          <div class="dossier-header">
+            <span class="dossier-mark">A</span>
+            <h3>Sortida Professional DAW/DAM</h3>
           </div>
-          <div class="block-content">
-            <div class="block-item">
-              <h4>Sortida Professional Escollida</h4>
-              <p><strong>Desenvolupador d'Aplicacions Multiplataforma</strong></p>
-              <p>Especialitzat en creació de software per a dispositius mòbils, web i escriptori</p>
-            </div>
-            
-            <div class="block-item">
-              <h4>1. Definició de la Feina</h4>
-              <p>Professional que dissenya, desenvolupa i manté aplicacions informàtiques que funcionen en múltiples plataformes (Android, iOS, Windows, Linux, web) utilitzant tecnologies com Java, Kotlin, Swift, React Native, Flutter, etc.</p>
-            </div>
-            
-            <div class="block-item">
-              <h4>2. Tasques Principals</h4>
-              <ul>
-                <li>Analitzar requisits del client/projecte</li>
-                <li>Dissenyar arquitectura de software</li>
-                <li>Programar codi seguint estàndards</li>
-                <li>Provar i depurar aplicacions</li>
-                <li>Documentar el codi i processos</li>
-                <li>Mantenir i actualitzar aplicacions</li>
-                <li>Col·laborar en equip amb metodologies àgils</li>
-                <li>Integrar APIs i serveis web</li>
-              </ul>
-            </div>
-            
-            <div class="block-item">
-              <h4>3. Competències Necessàries</h4>
-              <ul>
-                <li><strong>Tècniques:</strong> Programació (Java, Kotlin, Swift), bases de dades, APIs, Git</li>
-                <li><strong>Metodològiques:</strong> Scrum, Kanban, DevOps</li>
-                <li><strong>Personals:</strong> Resolució de problemes, treball en equip, aprenentatge continu</li>
-                <li><strong>Idiomes:</strong> Anglès tècnic (imprescindible)</li>
-                <li><strong>Específiques:</strong> UX/UI bàsic, seguretat informàtica, patrons de disseny</li>
-              </ul>
-            </div>
+
+          <div class="dossier-lead">
+            <p class="role">Desenvolupador Full Stack (DAW/DAM)</p>
+            <p class="role-sub">Especialitzat en creació de software per a web, dispositius mòbils i escriptori</p>
           </div>
-        </div>
-        
-        <!-- Bloque B -->
-        <div class="block-card">
-          <div class="block-header">
-            <h3>BLOC B - Anàlisi d'Ofertes Laborals</h3>
+
+          <div class="dossier-section">
+            <h4>1. Definició de la Feina</h4>
+            <p>Professional que dissenya, desenvolupa i manté aplicacions informàtiques tant per a web com per a múltiples plataformes (Android, iOS, Windows, Linux) utilitzant tecnologies com Java, JavaScript, Kotlin, Swift, React Native, Flutter, etc.</p>
           </div>
-          <div class="block-content">
-            <div class="block-item">
-              <h4>Recerca en portals laborals</h4>
-              <p>Anàlisi realitzada en InfoJobs, LinkedIn i altres portals especialitzats</p>
-            </div>
-            
-            <div class="offer-item">
-              <h4>Oferta 1: Programador Junior Java</h4>
-              <p><strong>Empresa:</strong> Consultoria tecnològica a Barcelona</p>
-              <p><strong>Requisits:</strong></p>
-              <ul>
+
+          <div class="dossier-section">
+            <h4>2. Tasques Principals</h4>
+            <ul class="clean-list">
+              <li>Analitzar requisits del client/projecte</li>
+              <li>Dissenyar arquitectura de software</li>
+              <li>Programar codi seguint estàndards</li>
+              <li>Provar i depurar aplicacions</li>
+              <li>Documentar el codi i processos</li>
+              <li>Mantenir i actualitzar aplicacions</li>
+              <li>Col·laborar en equip amb metodologies àgils</li>
+              <li>Integrar APIs i serveis web</li>
+            </ul>
+          </div>
+
+          <div class="dossier-section">
+            <h4>3. Competències Necessàries</h4>
+            <ul class="clean-list">
+              <li><strong>Tècniques:</strong> Programació (Java, JavaScript, Kotlin, Swift), bases de dades, APIs, Git</li>
+              <li><strong>Metodològiques:</strong> Scrum, Kanban, DevOps</li>
+              <li><strong>Personals:</strong> Resolució de problemes, treball en equip, aprenentatge continu</li>
+              <li><strong>Idiomes:</strong> Anglès tècnic (imprescindible)</li>
+              <li><strong>Específiques:</strong> UX/UI bàsic, seguretat informàtica, patrons de disseny</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Bloc B -->
+        <article class="dossier">
+          <div class="dossier-header">
+            <span class="dossier-mark">B</span>
+            <h3>Anàlisi d'Ofertes Laborals</h3>
+          </div>
+
+          <p class="dossier-intro">Anàlisi realitzada en InfoJobs, LinkedIn i altres portals especialitzats</p>
+
+          <div class="offer-list">
+            <div class="offer">
+              <div class="offer-head">
+                <h4>Oferta 1: Programador Junior Java</h4>
+                <span class="offer-company">Consultoria tecnològica a Barcelona</span>
+              </div>
+              <ul class="clean-list compact">
                 <li>Cicle Superior DAM o Enginyeria Informàtica</li>
                 <li>Java 8+, Spring Framework</li>
                 <li>SQL i bases de dades relacionals</li>
@@ -1249,11 +1190,13 @@
                 <li>Actitud d'aprenentatge</li>
               </ul>
             </div>
-            
-            <div class="offer-item">
-              <h4>Oferta 2: Desenvolupador Android</h4>
-              <p><strong>Empresa:</strong> Startup tecnològica a Tarragona</p>
-              <ul>
+
+            <div class="offer">
+              <div class="offer-head">
+                <h4>Oferta 2: Desenvolupador Android</h4>
+                <span class="offer-company">Startup tecnològica a Tarragona</span>
+              </div>
+              <ul class="clean-list compact">
                 <li>Kotlin/Java per Android</li>
                 <li>Android SDK i Android Studio</li>
                 <li>APIs REST i JSON</li>
@@ -1261,11 +1204,13 @@
                 <li>Portafolis de projectes propis</li>
               </ul>
             </div>
-            
-            <div class="offer-item">
-              <h4>Oferta 3: Programador Full-Stack</h4>
-              <p><strong>Empresa:</strong> Agència digital a Reus</p>
-              <ul>
+
+            <div class="offer">
+              <div class="offer-head">
+                <h4>Oferta 3: Programador Full-Stack</h4>
+                <span class="offer-company">Agència digital a Reus</span>
+              </div>
+              <ul class="clean-list compact">
                 <li>Frontend: HTML5, CSS3, JavaScript</li>
                 <li>Backend: Node.js o PHP</li>
                 <li>Bases de dades MySQL/MongoDB</li>
@@ -1273,11 +1218,13 @@
                 <li>Experiència pràctica (bootcamps acceptats)</li>
               </ul>
             </div>
-            
-            <div class="offer-item">
-              <h4>Oferta 4: Desenvolupador .NET</h4>
-              <p><strong>Empresa:</strong> Multinacional amb oficines a Lleida</p>
-              <ul>
+
+            <div class="offer">
+              <div class="offer-head">
+                <h4>Oferta 4: Desenvolupador .NET</h4>
+                <span class="offer-company">Multinacional amb oficines a Lleida</span>
+              </div>
+              <ul class="clean-list compact">
                 <li>C# i .NET Core</li>
                 <li>ASP.NET MVC</li>
                 <li>Entity Framework</li>
@@ -1285,11 +1232,13 @@
                 <li>Metodologies àgils</li>
               </ul>
             </div>
-            
-            <div class="offer-item">
-              <h4>Oferta 5: Becari Desenvolupament</h4>
-              <p><strong>Empresa:</strong> Centre tecnològic a Camp de Tarragona</p>
-              <ul>
+
+            <div class="offer">
+              <div class="offer-head">
+                <h4>Oferta 5: Becari Desenvolupament</h4>
+                <span class="offer-company">Centre tecnològic a Camp de Tarragona</span>
+              </div>
+              <ul class="clean-list compact">
                 <li>Estudiant de DAM o equivalent</li>
                 <li>Iniciativa i proactivitat</li>
                 <li>Bones notes acadèmiques</li>
@@ -1298,125 +1247,135 @@
               </ul>
             </div>
           </div>
-        </div>
-        
-        <!-- Bloque C -->
-        <div class="block-card">
-          <div class="block-header">
-            <h3>BLOC C - Itinerari Formatiu</h3>
-          </div>
-          <div class="block-content">
-            <div class="block-item">
-              <h4>Ruta cap al desenvolupament professional</h4>
-              <p>Planificació completa per convertir-me en desenvolupador</p>
-            </div>
-            
-            <div class="block-item">
-              <h4>Fase 1: Formació Reglada (Actual)</h4>
-              <ul>
-                <li><strong>Cicle Mitjà SMX (2024-2025):</strong> Bases de sistemes, xarxes i hardware</li>
-                <li><strong>Competències adquirides:</strong> Muntatge equips, xarxes locals, sistemes operatius</li>
-                <li><strong>Complementari:</strong> Cursos online (Google AI, programació bàsica)</li>
-              </ul>
-            </div>
-            
-            <div class="block-item">
-              <h4>Fase 2: Cicle Superior DAM (Planificat 2026-2028)</h4>
-              <ul>
-                <li><strong>Mòduls principals:</strong>
-                  <ul>
-                    <li>Programació (Java, C#, PHP)</li>
-                    <li>Bases de dades (SQL, NoSQL)</li>
-                    <li>Entorns de desenvolupament</li>
-                    <li>Desenvolupament d'interfícies</li>
-                    <li>Accés a dades</li>
-                    <li>Desenvolupament web i mòbil</li>
-                  </ul>
-                </li>
-                <li><strong>Pràctiques en empresa:</strong> 400 hores obligatòries</li>
-              </ul>
-            </div>
-            
-            <div class="block-item">
-              <h4>Fase 3: Especialització i Experiència</h4>
-              <ul>
-                <li><strong>Especialitzacions possibles:</strong>
-                  <ul>
-                    <li>Desenvolupament Android (Kotlin)</li>
-                    <li>Desenvolupament iOS (Swift)</li>
-                    <li>Full-Stack JavaScript</li>
-                  </ul>
-                </li>
-                <li><strong>Certificacions valorades:</strong>
-                  <ul>
-                    <li>Oracle Certified Associate (Java)</li>
-                    <li>Google Associate Android Developer</li>
-                  </ul>
-                </li>
-                <li><strong>Idiomes:</strong> Millorar anglès fins a B2/C1</li>
-              </ul>
-            </div>
-            
-            <div class="block-item">
-              <h4>Fase 4: Desenvolupament Professional</h4>
-              <ul>
-                <li><strong>Primer lloc de treball:</strong> Programador Junior (1-2 anys)</li>
-                <li><strong>Evolució:</strong> Programador Senior (3-5 anys)</li>
-                <li><strong>Portals d'ocupació a utilitzar:</strong> InfoJobs, LinkedIn, SOC, Ticjob</li>
-              </ul>
+
+          <div class="job-offers">
+            <h3>Resum de Requisits en Ofertes de Treball</h3>
+
+            <div class="requirements-grid">
+              <div class="requirement-category">
+                <h5>Formació Acadèmica</h5>
+                <ul class="clean-list">
+                  <li>DAM o Enginyeria Informàtica (95%)</li>
+                  <li>Bootcamps/Formació no reglada (60%)</li>
+                  <li>Experiència prèvia valorada (85%)</li>
+                </ul>
+              </div>
+
+              <div class="requirement-category">
+                <h5>Llenguatges de Programació</h5>
+                <ul class="clean-list">
+                  <li>Java (80%)</li>
+                  <li>JavaScript (75%)</li>
+                  <li>Python (40%)</li>
+                  <li>C# (35%)</li>
+                  <li>Kotlin/Swift (30%)</li>
+                </ul>
+              </div>
+
+              <div class="requirement-category">
+                <h5>Competències Tècniques</h5>
+                <ul class="clean-list">
+                  <li>Bases de dades SQL (90%)</li>
+                  <li>Git i control de versions (85%)</li>
+                  <li>APIs REST (80%)</li>
+                  <li>Metodologies àgils (70%)</li>
+                  <li>Docker/Contenidors (40%)</li>
+                </ul>
+              </div>
+
+              <div class="requirement-category">
+                <h5>Idiomes i Soft Skills</h5>
+                <ul class="clean-list">
+                  <li>Anglès tècnic (70%)</li>
+                  <li>Treball en equip (95%)</li>
+                  <li>Resolució problemes (90%)</li>
+                  <li>Aprenentatge autònom (85%)</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <!-- Resumen de ofertas -->
-      <div class="job-offers">
-        <h3 style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--accent);">
-          Resum de Requisits en Ofertes de Treball
-        </h3>
-        
-        <div class="requirements-grid">
-          <div class="requirement-category">
-            <h5>Formació Acadèmica</h5>
-            <ul>
-              <li>DAM o Enginyeria Informàtica (95%)</li>
-              <li>Bootcamps/Formació no reglada (60%)</li>
-              <li>Experiència prèvia valorada (85%)</li>
+        </article>
+
+        <!-- Bloc C -->
+        <article class="dossier">
+          <div class="dossier-header">
+            <span class="dossier-mark">C</span>
+            <h3>Itinerari Formatiu</h3>
+          </div>
+
+          <p class="dossier-intro">Planificació completa per convertir-me en desenvolupador</p>
+
+          <div class="dossier-section">
+            <h4>Fase 1: Formació Reglada (Completada)</h4>
+            <ul class="clean-list">
+              <li><strong>Cicle Mitjà SMX (2024-2026):</strong> Bases de sistemes, xarxes i hardware</li>
+              <li><strong>Competències adquirides:</strong> Muntatge equips, xarxes locals, sistemes operatius</li>
+              <li><strong>Complementari:</strong> Cursos online (Google AI, programació bàsica)</li>
             </ul>
           </div>
-          
-          <div class="requirement-category">
-            <h5>Llenguatges de Programació</h5>
-            <ul>
-              <li>Java (80%)</li>
-              <li>JavaScript (75%)</li>
-              <li>Python (40%)</li>
-              <li>C# (35%)</li>
-              <li>Kotlin/Swift (30%)</li>
+
+          <div class="dossier-section">
+            <h4>Fase 2: Cicle Superior DAW (En curs 2026-2028)</h4>
+            <ul class="clean-list">
+              <li><strong>Mòduls principals:</strong>
+                <ul class="clean-list">
+                  <li>Desenvolupament web en entorn client</li>
+                  <li>Desenvolupament web en entorn servidor</li>
+                  <li>Bases de dades (SQL, NoSQL)</li>
+                  <li>Disseny d'interfícies web</li>
+                  <li>Desplegament d'aplicacions web</li>
+                </ul>
+              </li>
+              <li><strong>Pràctiques en empresa:</strong> 400 hores obligatòries</li>
             </ul>
           </div>
-          
-          <div class="requirement-category">
-            <h5>Competències Tècniques</h5>
-            <ul>
-              <li>Bases de dades SQL (90%)</li>
-              <li>Git i control de versions (85%)</li>
-              <li>APIs REST (80%)</li>
-              <li>Metodologies àgils (70%)</li>
-              <li>Docker/Contenidors (40%)</li>
+
+          <div class="dossier-section">
+            <h4>Fase 3: Cicle Superior DAM (Planificat, després del DAW)</h4>
+            <ul class="clean-list">
+              <li><strong>Mòduls principals:</strong>
+                <ul class="clean-list">
+                  <li>Programació (Java, Kotlin)</li>
+                  <li>Accés a dades</li>
+                  <li>Desenvolupament d'interfícies</li>
+                  <li>Programació multimèdia i dispositius mòbils</li>
+                  <li>Sistemes de gestió empresarial</li>
+                </ul>
+              </li>
+              <li><strong>Pràctiques en empresa:</strong> 400 hores obligatòries</li>
             </ul>
           </div>
-          
-          <div class="requirement-category">
-            <h5>Idiomes i Soft Skills</h5>
-            <ul>
-              <li>Anglès tècnic (70%)</li>
-              <li>Treball en equip (95%)</li>
-              <li>Resolució problemes (90%)</li>
-              <li>Aprenentatge autònom (85%)</li>
+
+          <div class="dossier-section">
+            <h4>Fase 4: Especialització i Experiència</h4>
+            <ul class="clean-list">
+              <li><strong>Especialitzacions possibles:</strong>
+                <ul class="clean-list">
+                  <li>Desenvolupament Android (Kotlin)</li>
+                  <li>Desenvolupament iOS (Swift)</li>
+                  <li>Full-Stack JavaScript</li>
+                </ul>
+              </li>
+              <li><strong>Certificacions valorades:</strong>
+                <ul class="clean-list">
+                  <li>Oracle Certified Associate (Java)</li>
+                  <li>Google Associate Android Developer</li>
+                </ul>
+              </li>
+              <li><strong>Idiomes:</strong> Millorar anglès fins a B2/C1</li>
             </ul>
           </div>
-        </div>
+
+          <div class="dossier-section">
+            <h4>Fase 5: Desenvolupament Professional</h4>
+            <ul class="clean-list">
+              <li><strong>Primer lloc de treball:</strong> Programador Junior (1-2 anys)</li>
+              <li><strong>Evolució:</strong> Programador Senior (3-5 anys)</li>
+              <li><strong>Portals d'ocupació a utilitzar:</strong> InfoJobs, LinkedIn, SOC, Ticjob</li>
+            </ul>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -1424,70 +1383,68 @@
   <!-- Contact Section -->
   <section id="contact" class="section">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Contacte</h2>
         <p>Posem-nos en contacte per a oportunitats d'aprenentatge i col·laboració</p>
       </div>
-      
+
       <div class="contact-grid">
         <div class="contact-info">
           <h3>Informació de contacte</h3>
-          
+
           <div class="contact-details">
             <div class="contact-detail">
-              <i class="bi bi-envelope"></i>
-              <span>abel.bernal@iaballester.cat</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+              <span>abel.bernal@insbaixcamp.cat</span>
             </div>
-            
             <div class="contact-detail">
-              <i class="bi bi-phone"></i>
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
               <span>+34 636 54 09 28</span>
             </div>
-            
             <div class="contact-detail">
-              <i class="bi bi-geo-alt"></i>
+              <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
               <span>Reus, Catalunya</span>
             </div>
           </div>
-          
-          <div style="background: var(--medium-gray); padding: var(--spacing-md); border-radius: var(--border-radius); border-left: 3px solid var(--accent);">
-            <h4 style="color: var(--accent); margin-bottom: var(--spacing-sm);">Disponible per</h4>
-            <ul style="color: #ccc; padding-left: 1rem;">
+
+          <div class="available-box">
+            <h4>Disponible per</h4>
+            <ul class="clean-list">
               <li>Projectes de col·laboració</li>
               <li>Aprenentatge tutoritzat</li>
             </ul>
           </div>
         </div>
-        
+
         <div class="contact-form-container">
           <h3>Envia'm un missatge</h3>
-          
+
           <form action="https://formspree.io/f/xqebppjr" method="POST" id="contactForm">
             <div class="form-group">
               <label for="name">Nom complet *</label>
               <input type="text" id="name" name="name" class="form-control" required>
             </div>
-            
+
             <div class="form-group">
               <label for="email">Email *</label>
               <input type="email" id="email" name="email" class="form-control" required>
             </div>
-            
+
             <div class="form-group">
               <label for="subject">Assumpte *</label>
               <input type="text" id="subject" name="subject" class="form-control" required>
             </div>
-            
+
             <div class="form-group">
               <label for="message">Missatge *</label>
               <textarea id="message" name="message" class="form-control" required></textarea>
             </div>
-            
+
             <div id="form-messages"></div>
-            
+
             <button type="submit" class="submit-btn">
               <span>Enviar missatge</span>
-              <i class="bi bi-send"></i>
+              <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
             </button>
           </form>
         </div>
@@ -1501,22 +1458,15 @@
       <div class="footer-content">
         <div class="footer-logo">Abel Bernal</div>
         <p class="footer-text">
-          Estudiant de tecnologia en constant evolució. SMX actual, DAM al futur. 
+          Estudiant de tecnologia en constant evolució. SMX assolit, DAW en curs, DAM al futur.
           Compromès amb l'aprenentatge continu i la innovació tecnològica.
         </p>
-        
-        <div class="footer-social">
-          <a href="https://linkedin.com" target="_blank">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://github.com" target="_blank">
-            <i class="bi bi-github"></i>
-          </a>
-          <a href="mailto:abel.bernal@iaballester.cat">
-            <i class="bi bi-envelope"></i>
-          </a>
-        </div>
-        
+
+        <a class="footer-link" href="https://www.linkedin.com/in/abel-bernal-quesada-8a705b316" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+          <span>LinkedIn</span>
+        </a>
+
         <div class="copyright">
           © 2026 Abel Bernal. Tots els drets reservats.<br>
           Dissenyat per a projecte professional SMX
@@ -1526,41 +1476,40 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    /* ===== Plantilles d'icones per al JS ===== */
+    const ICON_MENU = '<svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>';
+    const ICON_CLOSE = '<svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>';
+
+    /* ===== Mobile menu toggle ===== */
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
-    
+
     mobileMenuBtn.addEventListener('click', () => {
       mainNav.classList.toggle('active');
-      mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-        ? '<i class="bi bi-x"></i>' 
-        : '<i class="bi bi-list"></i>';
+      mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? ICON_CLOSE : ICON_MENU;
     });
-    
-    // Close mobile menu on link click
+
+    /* Close mobile menu on link click */
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         mainNav.classList.remove('active');
-        mobileMenuBtn.innerHTML = '<i class="bi bi-list"></i>';
+        mobileMenuBtn.innerHTML = ICON_MENU;
       });
     });
-    
-    // Active navigation on scroll
+
+    /* ===== Active navigation on scroll ===== */
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav a');
-      
       let current = '';
-      
+
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
         if (scrollY >= (sectionTop - 150)) {
           current = section.getAttribute('id');
         }
       });
-      
+
       navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -1568,40 +1517,62 @@
         }
       });
     });
-    
-    // Form submission
+
+    /* ===== Skill bars: animació en entrar a pantalla ===== */
+    (function initSkillBars() {
+      const tracks = document.querySelectorAll('.skill-track');
+      if (!tracks.length) return;
+
+      document.querySelectorAll('.skill-group').forEach(group => {
+        group.querySelectorAll('.skill-fill').forEach((fill, i) => {
+          fill.style.transitionDelay = (i * 90) + 'ms';
+        });
+      });
+
+      if (!('IntersectionObserver' in window)) {
+        tracks.forEach(t => t.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.35 });
+
+      tracks.forEach(track => observer.observe(track));
+    })();
+
+    /* ===== Form submission ===== */
     const contactForm = document.getElementById('contactForm');
     const formMessages = document.getElementById('form-messages');
-    
+
     if (contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
+      contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        
-        // Show loading state
-        submitBtn.innerHTML = '<span>Enviant...</span><i class="bi bi-hourglass"></i>';
+
+        submitBtn.innerHTML = '<span>Enviant...</span><svg class="icon" aria-hidden="true"><use href="#i-hourglass"></use></svg>';
         submitBtn.disabled = true;
-        
-        // Clear previous messages
         formMessages.innerHTML = '';
-        
+
         try {
           const formData = new FormData(this);
-          
           const response = await fetch(this.action, {
             method: 'POST',
             body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
           });
-          
+
           if (response.ok) {
             formMessages.innerHTML = `
               <div class="message success">
-                <i class="bi bi-check-circle"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
                 <span>Gràcies! El teu missatge s'ha enviat correctament. Et respondré aviat.</span>
               </div>
             `;
@@ -1612,26 +1583,24 @@
         } catch (error) {
           formMessages.innerHTML = `
             <div class="message error">
-              <i class="bi bi-exclamation-triangle"></i>
+              <svg class="icon" aria-hidden="true"><use href="#i-warning"></use></svg>
               <span>Hi ha hagut un error en enviar el missatge. Si us plau, torna-ho a provar.</span>
             </div>
           `;
         } finally {
-          // Restore button state
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
       });
     }
-    
-    // Smooth scrolling for anchor links
+
+    /* ===== Smooth scrolling amb offset del header fix ===== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
           window.scrollTo({
@@ -1641,40 +1610,12 @@
         }
       });
     });
-    
-    // Animate skill bars on scroll
-    const animateOnScroll = () => {
-      const skillBars = document.querySelectorAll('.skill-progress');
-      const windowHeight = window.innerHeight;
-      
-      skillBars.forEach(bar => {
-        const elementTop = bar.getBoundingClientRect().top;
-        
-        if (elementTop < windowHeight - 100) {
-          const width = bar.getAttribute('data-width') || bar.style.width;
-          bar.style.width = width;
-        }
-      });
-    };
-    
-    // Set initial width for animation
-    document.querySelectorAll('.skill-progress').forEach(bar => {
-      const width = bar.style.width;
-      bar.setAttribute('data-width', width);
-      bar.style.width = '0';
-    });
-    
-    // Trigger animation on scroll
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', animateOnScroll);
-    
-    // Initialize with active link
+
+    /* ===== Active nav link on load ===== */
     document.addEventListener('DOMContentLoaded', () => {
       const currentSection = window.location.hash || '#hero';
       const activeLink = document.querySelector(`nav a[href="${currentSection}"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
+      if (activeLink) activeLink.classList.add('active');
     });
   </script>
 </body>
