@@ -6,10 +6,13 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Abel Bernal | Portfoli</title>
   <meta name="description" content="Portfoli professional d'Abel Bernal, Tècnic SMX i estudiant de DAW, amb l'objectiu de completar també el DAM">
+  <meta name="author" content="Abel Bernal">
+  <meta name="theme-color" content="#0a0a0a">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://i.imgur.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -338,6 +341,101 @@
       .path-line { animation: none; stroke-dashoffset: 0; }
       .node-pulse { animation: none; opacity: 0; }
     }
+
+    /* ===== Nodes interactius (hover zones) ===== */
+    .node-hover { cursor: pointer; outline: none; }
+    .node-hit {
+      fill: transparent;
+      pointer-events: all;
+      transition: fill .25s var(--ease);
+    }
+    .node-hover:hover .node-hit,
+    .node-hover:focus-visible .node-hit {
+      fill: rgba(0, 217, 255, .08);
+    }
+    .node-hover:focus-visible .node-hit {
+      stroke: var(--accent);
+      stroke-width: 1;
+      fill: rgba(0, 217, 255, .1);
+    }
+
+    /* ===== Tooltips dels nodes del gràfic ===== */
+    .node-tooltip {
+      position: absolute;
+      --tx: -50%;
+      --arrow-x: 50%;
+      transform: translate(var(--tx), calc(-100% - 10px));
+      padding: .6rem .9rem;
+      border-radius: var(--radius-sm);
+      background: var(--dark-gray);
+      border: 1px solid var(--light-gray);
+      border-top: 2px solid var(--accent);
+      color: var(--text-1);
+      font-family: var(--font-display);
+      font-size: .82rem;
+      font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 20;
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, .55),
+        0 0 22px rgba(0, 217, 255, .12);
+      transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s;
+    }
+
+    .node-tooltip.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(var(--tx), calc(-100% - 18px));
+    }
+
+    .node-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--arrow-x);
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--accent);
+    }
+
+    .node-tooltip .tooltip-title {
+      display: block;
+      color: var(--accent);
+      font-size: .66rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .18rem;
+    }
+
+    .node-tooltip .tooltip-text {
+      display: block;
+      color: var(--text-1);
+      line-height: 1.3;
+    }
+
+    .node-tooltip .tooltip-sub {
+      display: block;
+      color: var(--text-2);
+      font-size: .74rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      margin-top: .15rem;
+      line-height: 1.35;
+    }
+
+    /* Posicions individuals de cada tooltip (alineades amb els nodes SVG) */
+    .node-tooltip[data-node="1"] { left: 14.58%; top: 85.71%; --tx: -20%; --arrow-x: 20%; }
+    .node-tooltip[data-node="2"] { left: 31.25%; top: 67.86%; --tx: -50%; --arrow-x: 50%; }
+    .node-tooltip[data-node="3"] { left: 44.79%; top: 46.07%; --tx: -50%; --arrow-x: 50%; }
+    .node-tooltip[data-node="4"] { left: 67.08%; top: 31.79%; --tx: -50%; --arrow-x: 50%; }
+    .node-tooltip[data-node="5"] { left: 83.75%; top: 16.43%; --tx: -80%; --arrow-x: 80%; }
 
     /* ===== About ===== */
     #about { background: var(--dark-gray); }
@@ -854,8 +952,8 @@
           </div>
         </div>
 
-        <div class="hero-graphic" aria-hidden="true">
-          <svg viewBox="0 0 480 560" class="path-svg" xmlns="http://www.w3.org/2000/svg">
+        <div class="hero-graphic">
+          <svg viewBox="0 0 480 560" class="path-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="path-line" d="M70,480 L150,380 L215,258 L322,178 L402,92" />
 
             <line class="link-line" x1="70" y1="480" x2="28" y2="410" />
@@ -870,17 +968,68 @@
             <circle class="node-dim" cx="385" cy="230" r="4" />
             <circle class="node-dim" cx="330" cy="55" r="4" />
 
-            <circle class="node-past" cx="70" cy="480" r="7" />
-            <circle class="node-past" cx="150" cy="380" r="7" />
-
-            <g>
-              <circle class="node-pulse" cx="215" cy="258" r="7" />
-              <circle class="node-current" cx="215" cy="258" r="7" />
+            <!-- Node 1 · ESO -->
+            <g class="node-hover" data-node="1" tabindex="0" role="img" aria-label="ESO, Maria Rosa Molas, Reus">
+              <circle class="node-hit" cx="70" cy="480" r="22" />
+              <circle class="node-past" cx="70" cy="480" r="7" />
             </g>
 
-            <circle class="node-future" cx="322" cy="178" r="7" />
-            <circle class="node-future" cx="402" cy="92" r="7" />
+            <!-- Node 2 · SMX -->
+            <g class="node-hover" data-node="2" tabindex="0" role="img" aria-label="SMX, INS Antoni Ballester, Mont Roig">
+              <circle class="node-hit" cx="150" cy="380" r="22" />
+              <circle class="node-past" cx="150" cy="380" r="7" />
+            </g>
+
+            <!-- Node 3 · Pràctiques SMX -->
+            <g class="node-hover" data-node="3" tabindex="0" role="img" aria-label="Becari Tècnic SMX, Institut Gabriel i Ferrater, Reus">
+              <circle class="node-hit" cx="215" cy="258" r="22" />
+              <circle class="node-past" cx="215" cy="258" r="7" />
+            </g>
+
+            <!-- Node 4 · DAW (actual) -->
+            <g class="node-hover" data-node="4" tabindex="0" role="img" aria-label="DAW en curs">
+              <circle class="node-hit" cx="322" cy="178" r="22" />
+              <circle class="node-pulse" cx="322" cy="178" r="7" />
+              <circle class="node-current" cx="322" cy="178" r="7" />
+            </g>
+
+            <!-- Node 5 · DAM (futur) -->
+            <g class="node-hover" data-node="5" tabindex="0" role="img" aria-label="DAM, futur">
+              <circle class="node-hit" cx="402" cy="92" r="22" />
+              <circle class="node-future" cx="402" cy="92" r="7" />
+            </g>
           </svg>
+
+          <!-- Tooltips (una per a cada node) -->
+          <div class="node-tooltip" data-node="1" role="tooltip">
+            <span class="tooltip-title">Formació</span>
+            <span class="tooltip-text">ESO</span>
+            <span class="tooltip-sub">Maria Rosa Molas, Reus</span>
+          </div>
+
+          <div class="node-tooltip" data-node="2" role="tooltip">
+            <span class="tooltip-title">Formació</span>
+            <span class="tooltip-text">SMX</span>
+            <span class="tooltip-sub">INS Antoni Ballester, Mont Roig</span>
+          </div>
+
+          <div class="node-tooltip" data-node="3" role="tooltip">
+            <span class="tooltip-title">Experiència</span>
+            <span class="tooltip-text">Becari Tècnic SMX</span>
+            <span class="tooltip-sub">Institut Gabriel i Ferrater, Reus</span>
+          </div>
+
+          <div class="node-tooltip" data-node="4" role="tooltip">
+            <span class="tooltip-title">En curs</span>
+            <span class="tooltip-text">DAW</span>
+            <span class="tooltip-sub">Desenvolupament d'Apps Web</span>
+          </div>
+
+          <div class="node-tooltip" data-node="5" role="tooltip">
+            <span class="tooltip-title">Futur</span>
+            <span class="tooltip-text">DAM</span>
+            <span class="tooltip-sub">Desenvolupament Multiplataforma</span>
+          </div>
         </div>
       </div>
     </div>
@@ -896,7 +1045,7 @@
 
       <div class="about-grid">
         <div class="about-image">
-          <img src="https://i.imgur.com/xdFBarB.png" alt="Abel Bernal" class="profile-image">
+          <img src="https://i.imgur.com/xdFBarB.png" alt="Abel Bernal" class="profile-image" loading="lazy" decoding="async" width="320" height="400">
 
           <div class="tech-stack">
             <h4>Tecnologies que aprenc</h4>
@@ -1083,6 +1232,20 @@
             <p>
               Formació en muntatge i manteniment d'equips, xarxes informàtiques, sistemes operatius,
               seguretat informàtica i serveis de xarxa.
+            </p>
+          </div>
+        </div>
+
+        <div class="path-item is-done">
+          <div class="path-node"><span class="path-node-dot"></span></div>
+          <div class="path-body">
+            <span class="path-date">2025 - 2026 <span class="path-tag">Pràctiques</span></span>
+            <h3>Becari Tècnic en Sistemes Microinformàtics i Xarxes</h3>
+            <h4>Institut Gabriel i Ferrater · Reus</h4>
+            <p>
+              Pràctiques com a becari durant el curs de SMX, oferint suport tècnic en el manteniment
+              d'equips informàtics, la configuració de xarxes locals, la resolució d'incidències i
+              l'assistència als usuaris del centre.
             </p>
           </div>
         </div>
@@ -1309,6 +1472,7 @@
             <h4>Fase 1: Formació Reglada (Completada)</h4>
             <ul class="clean-list">
               <li><strong>Cicle Mitjà SMX (2024-2026):</strong> Bases de sistemes, xarxes i hardware</li>
+              <li><strong>Pràctiques en empresa (2025-2026):</strong> Becari com a Tècnic en Sistemes Microinformàtics i Xarxes a l'Institut Gabriel i Ferrater de Reus, donant suport tècnic, manteniment d'equips i atenció a usuaris durant el curs de SMX</li>
               <li><strong>Competències adquirides:</strong> Muntatge equips, xarxes locals, sistemes operatius</li>
               <li><strong>Complementari:</strong> Cursos online (Google AI, programació bàsica)</li>
             </ul>
@@ -1476,100 +1640,130 @@
   </footer>
 
   <script>
-    /* ===== Plantilles d'icones per al JS ===== */
-    const ICON_MENU = '<svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>';
-    const ICON_CLOSE = '<svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>';
+    (() => {
+      'use strict';
 
-    /* ===== Mobile menu toggle ===== */
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
+      /* ===== Plantilles d'icones per al JS ===== */
+      const ICON_MENU = '<svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>';
+      const ICON_CLOSE = '<svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>';
 
-    mobileMenuBtn.addEventListener('click', () => {
-      mainNav.classList.toggle('active');
-      mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? ICON_CLOSE : ICON_MENU;
-    });
+      /* ===== Referències DOM (cachejades) ===== */
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mainNav = document.getElementById('mainNav');
+      const navLinks = document.querySelectorAll('nav a');
+      const sections = document.querySelectorAll('section');
+      const contactForm = document.getElementById('contactForm');
+      const formMessages = document.getElementById('form-messages');
 
-    /* Close mobile menu on link click */
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
+      /* ===== Mobile menu toggle ===== */
+      const closeMobileMenu = () => {
         mainNav.classList.remove('active');
         mobileMenuBtn.innerHTML = ICON_MENU;
-      });
-    });
+        mobileMenuBtn.setAttribute('aria-label', 'Obrir menú');
+      };
 
-    /* ===== Active navigation on scroll ===== */
-    window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('nav a');
-      let current = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= (sectionTop - 150)) {
-          current = section.getAttribute('id');
-        }
+      mobileMenuBtn?.addEventListener('click', () => {
+        const isActive = mainNav.classList.toggle('active');
+        mobileMenuBtn.innerHTML = isActive ? ICON_CLOSE : ICON_MENU;
+        mobileMenuBtn.setAttribute('aria-label', isActive ? 'Tancar menú' : 'Obrir menú');
       });
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    });
+      navLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-    /* ===== Skill bars: animació en entrar a pantalla ===== */
-    (function initSkillBars() {
-      const tracks = document.querySelectorAll('.skill-track');
-      if (!tracks.length) return;
+      /* ===== Tooltips del gràfic del hero ===== */
+      (() => {
+        const nodeGroups = document.querySelectorAll('.node-hover');
+        if (!nodeGroups.length) return;
 
-      document.querySelectorAll('.skill-group').forEach(group => {
-        group.querySelectorAll('.skill-fill').forEach((fill, i) => {
-          fill.style.transitionDelay = (i * 90) + 'ms';
+        nodeGroups.forEach(group => {
+          const nodeId = group.dataset.node;
+          const tooltip = document.querySelector(`.node-tooltip[data-node="${nodeId}"]`);
+          if (!tooltip) return;
+
+          const show = () => tooltip.classList.add('is-visible');
+          const hide = () => tooltip.classList.remove('is-visible');
+
+          group.addEventListener('mouseenter', show);
+          group.addEventListener('mouseleave', hide);
+          group.addEventListener('focus', show);
+          group.addEventListener('blur', hide);
         });
-      });
+      })();
 
-      if (!('IntersectionObserver' in window)) {
-        tracks.forEach(t => t.classList.add('is-visible'));
-        return;
-      }
+      /* ===== Active navigation on scroll (throttled amb rAF) ===== */
+      let ticking = false;
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+      const updateActiveNav = () => {
+        const scrollPos = window.scrollY + 150;
+        let current = '';
+
+        sections.forEach(section => {
+          if (scrollPos >= section.offsetTop) current = section.id;
         });
-      }, { threshold: 0.35 });
 
-      tracks.forEach(track => observer.observe(track));
-    })();
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        });
 
-    /* ===== Form submission ===== */
-    const contactForm = document.getElementById('contactForm');
-    const formMessages = document.getElementById('form-messages');
+        ticking = false;
+      };
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateActiveNav);
+          ticking = true;
+        }
+      }, { passive: true });
 
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
+      /* ===== Skill bars: animació en entrar a pantalla ===== */
+      (() => {
+        const tracks = document.querySelectorAll('.skill-track');
+        if (!tracks.length) return;
 
-        submitBtn.innerHTML = '<span>Enviant...</span><svg class="icon" aria-hidden="true"><use href="#i-hourglass"></use></svg>';
-        submitBtn.disabled = true;
-        formMessages.innerHTML = '';
-
-        try {
-          const formData = new FormData(this);
-          const response = await fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
+        document.querySelectorAll('.skill-group').forEach(group => {
+          group.querySelectorAll('.skill-fill').forEach((fill, i) => {
+            fill.style.transitionDelay = (i * 90) + 'ms';
           });
+        });
 
-          if (response.ok) {
+        if (!('IntersectionObserver' in window)) {
+          tracks.forEach(t => t.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.35 });
+
+        tracks.forEach(track => observer.observe(track));
+      })();
+
+      /* ===== Form submission ===== */
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+
+          submitBtn.innerHTML = '<span>Enviant...</span><svg class="icon" aria-hidden="true"><use href="#i-hourglass"></use></svg>';
+          submitBtn.disabled = true;
+          formMessages.innerHTML = '';
+
+          try {
+            const response = await fetch(this.action, {
+              method: 'POST',
+              body: new FormData(this),
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (!response.ok) throw new Error('Error en la resposta del servidor');
+
             formMessages.innerHTML = `
               <div class="message success">
                 <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
@@ -1577,46 +1771,45 @@
               </div>
             `;
             this.reset();
-          } else {
-            throw new Error('Error en la resposta del servidor');
+          } catch (error) {
+            formMessages.innerHTML = `
+              <div class="message error">
+                <svg class="icon" aria-hidden="true"><use href="#i-warning"></use></svg>
+                <span>Hi ha hagut un error en enviar el missatge. Si us plau, torna-ho a provar.</span>
+              </div>
+            `;
+          } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
           }
-        } catch (error) {
-          formMessages.innerHTML = `
-            <div class="message error">
-              <svg class="icon" aria-hidden="true"><use href="#i-warning"></use></svg>
-              <span>Hi ha hagut un error en enviar el missatge. Si us plau, torna-ho a provar.</span>
-            </div>
-          `;
-        } finally {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }
-      });
-    }
+        });
+      }
 
-    /* ===== Smooth scrolling amb offset del header fix ===== */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+      /* ===== Smooth scrolling amb offset del header fix ===== */
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
+          const targetElement = document.querySelector(targetId);
+          if (!targetElement) return;
+
           window.scrollTo({
             top: targetElement.offsetTop - 80,
             behavior: 'smooth'
           });
-        }
+        });
       });
-    });
 
-    /* ===== Active nav link on load ===== */
-    document.addEventListener('DOMContentLoaded', () => {
-      const currentSection = window.location.hash || '#hero';
-      const activeLink = document.querySelector(`nav a[href="${currentSection}"]`);
-      if (activeLink) activeLink.classList.add('active');
-    });
+      /* ===== Active nav link on load ===== */
+      document.addEventListener('DOMContentLoaded', () => {
+        const currentSection = window.location.hash || '#hero';
+        const activeLink = document.querySelector(`nav a[href="${currentSection}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      });
+    })();
   </script>
 </body>
+
 </html>
